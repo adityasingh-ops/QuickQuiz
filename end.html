@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz End</title>
+    <style>
+        body {
+            background-color: #a5e0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20%;
+        }
+        h1 {
+            color: #4f7cbf;
+            font-size: 50px;
+        }
+        .score {
+            font-size: 24px;
+        }
+        button {
+        background-color: #ffffff;
+        border-color: aqua;
+        color: rgb(210, 237, 238);
+        padding: 5px 35px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    a {
+        color: rgb(92, 157, 177);
+        text-decoration: none;
+    }
+    button:hover {
+        background-color: #7cd4ea;
+    }
+    </style>
+</head>
+<body>
+    <h1>Thank you 💐</h1>
+    <div class="score" id="score"></div>
+    <button>
+        <a href="quiz.html">Restart</a>
+    </button>
+
+    <script>
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const score = parseInt(urlParams.get('score'));
+
+        const finalScore = score * 10;
+
+        document.getElementById('score').textContent = `Your final score is: ${finalScore}`;
+    </script>
+</body>
+</html>

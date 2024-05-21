@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        background-color: #a5e0f0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .container {
+        margin-top: 15%;
+    }
+    .correct {
+    background-color: #28a745; /* Green */
+
+}
+
+.incorrect {
+    background-color: #dc3545; /* Red */
+}
+.question {
+    color: #4f7cbf;
+    font-size: 30px;
+}
+
+.choice {
+    margin: 10px auto;
+    /* align-self: center; */
+    padding: 10px;
+    width: 30%;
+    background-color: #ffffff;
+    border: 2px solid aqua;
+    color: #4f7cbf;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.score {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #4f7cbf;
+}
+
+.choice:hover {
+    background-color: #7cd4ea;
+}
+</style>
+<body>
+    <div class="score"></div>
+    <div class="container">
+        
+        <h2 class="question">Question</h2>
+        <div class="choices"></div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
