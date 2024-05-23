@@ -22,6 +22,7 @@ function loadQuestion() {
     const questionElement = document.querySelector('.question');
     const choicesElement = document.querySelector('.choices');
     const scoreElement = document.querySelector('.score');
+    const progressBar = document.querySelector('.progress-bar');
 
     const currentQuestionData = questions[currentQuestion];
     
@@ -36,28 +37,44 @@ function loadQuestion() {
         choiceElement.addEventListener('click', () => handleChoiceClick(index));
         choicesElement.appendChild(choiceElement);
     });
+
+    updateProgressBar();
 }
 
 function handleChoiceClick(selectedAnswer) {
-    if (selectedAnswer === questions[currentQuestion].answer) {
+    const currentQuestionData = questions[currentQuestion];
+    const choices = document.querySelectorAll('.choice');
+
+    if (selectedAnswer === currentQuestionData.answer) {
         score++; 
     }
 
-  
-    const choices = document.querySelectorAll('.choice');
     choices.forEach((choice, index) => {
-        if (index === questions[currentQuestion].answer) {
+        const icon = document.createElement('span');
+        icon.classList.add('icon');
+
+        if (index === currentQuestionData.answer) {
             choice.classList.add('correct');
+            icon.textContent = '✔'; // Unicode check mark
+            icon.style.color = 'green';
         } else if (index === selectedAnswer) {
             choice.classList.add('incorrect');
+            icon.textContent = '✘';
+            icon.style.color = 'red';
+            // Unicode X mark
         }
+
+        choice.appendChild(icon);
         choice.style.pointerEvents = 'none'; 
     });
 
-  
     setTimeout(() => {
         choices.forEach(choice => {
             choice.classList.remove('correct', 'incorrect');
+            const icon = choice.querySelector('.icon');
+            if (icon) {
+                icon.remove();
+            }
             choice.style.pointerEvents = 'auto'; 
         });
         currentQuestion++;
@@ -66,10 +83,13 @@ function handleChoiceClick(selectedAnswer) {
         } else {
             window.location.href = `end.html?score=${score}`;
         }
-    }, 1000);
+    }, 2000);
 }
 
-
-
+function updateProgressBar() {
+    const progressBar = document.querySelector('.progress-bar');
+    const progress = (currentQuestion / questions.length) * 100;
+    progressBar.style.width = `${progress}%`;
+}
 
 loadQuestion();
